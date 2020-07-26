@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:async/async.dart';
 import 'package:clean_dart_github_search_mobx/app/app_module.dart';
 import 'package:clean_dart_github_search_mobx/app/search/presenter/search_store.dart';
 import 'package:dio/dio.dart';

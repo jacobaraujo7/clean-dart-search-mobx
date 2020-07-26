@@ -22,15 +22,16 @@ abstract class _SearchStoreBase with Store {
 
   Future stateReaction(String text,
       [CancelableOperation cancellableOperation]) async {
+    await cancellableOperation?.cancel();
+    cancellableOperation =
+        CancelableOperation<SearchState>.fromFuture(makeSearch(text));
     if (text.isEmpty) {
       setState(StartState());
       return;
     }
 
     setState(LoadingState());
-    await cancellableOperation?.cancel();
-    cancellableOperation =
-        CancelableOperation<SearchState>.fromFuture(makeSearch(text));
+
     setState(await cancellableOperation.valueOrCancellation(LoadingState()));
   }
 
