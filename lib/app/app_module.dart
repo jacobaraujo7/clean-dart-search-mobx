@@ -1,8 +1,8 @@
-import 'package:clean_dart_github_search/app/search/presenter/search_bloc.dart';
+import 'package:clean_dart_github_search_mobx/app/search/presenter/search_store.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
-import 'package:clean_dart_github_search/app/app_widget.dart';
+import 'package:clean_dart_github_search_mobx/app/app_widget.dart';
 
 import 'search/domain/usecases/search_by_text.dart';
 import 'search/external/github/github_search_datasource.dart';
@@ -16,7 +16,7 @@ class AppModule extends MainModule {
         $SearchRepositoryImpl,
         $GithubSearchDatasource,
         Bind((i) => Dio()),
-        $SearchBloc,
+        $SearchStore,
       ];
 
   @override

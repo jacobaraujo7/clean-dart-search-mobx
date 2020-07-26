@@ -1,9 +1,10 @@
-import 'package:clean_dart_github_search/app/search/domain/entities/result.dart';
-import 'package:clean_dart_github_search/app/search/domain/errors/erros.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/entities/result.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/errors/erros.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'search_bloc.dart';
+import 'search_store.dart';
 import 'states/search_state.dart';
 
 class SearchPage extends StatefulWidget {
@@ -11,7 +12,7 @@ class SearchPage extends StatefulWidget {
   _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
+class _SearchPageState extends ModularState<SearchPage, SearchStore> {
   Widget _buildList(List<Result> list) {
     return ListView.builder(
       itemCount: list.length,
@@ -54,7 +55,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
           Padding(
             padding: const EdgeInsets.only(top: 8, right: 8, left: 8),
             child: TextField(
-              onChanged: controller.add,
+              onChanged: controller.setSearchText,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: "Pesquise...",
@@ -62,29 +63,27 @@ class _SearchPageState extends ModularState<SearchPage, SearchBloc> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<SearchState>(
-                stream: controller,
-                builder: (context, snapshot) {
-                  var state = controller.state;
+            child: Observer(builder: (_) {
+              var state = controller.state;
 
-                  if (state is ErrorState) {
-                    return _buildError(state.error);
-                  }
+              if (state is ErrorState) {
+                return _buildError(state.error);
+              }
 
-                  if (state is StartState) {
-                    return Center(
-                      child: Text('Digita alguma coisa...'),
-                    );
-                  } else if (state is LoadingState) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is SuccessState) {
-                    return _buildList(state.list);
-                  } else {
-                    return Container();
-                  }
-                }),
+              if (state is StartState) {
+                return Center(
+                  child: Text('Digita alguma coisa...'),
+                );
+              } else if (state is LoadingState) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is SuccessState) {
+                return _buildList(state.list);
+              } else {
+                return Container();
+              }
+            }),
           )
         ],
       ),

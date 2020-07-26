@@ -1,7 +1,7 @@
-import 'package:clean_dart_github_search/app/search/domain/entities/result.dart';
-import 'package:clean_dart_github_search/app/search/domain/errors/erros.dart';
-import 'package:clean_dart_github_search/app/search/domain/repositories/search_repository.dart';
-import 'package:clean_dart_github_search/app/search/domain/usecases/search_by_text.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/entities/result.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/errors/erros.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/repositories/search_repository.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/usecases/search_by_text.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

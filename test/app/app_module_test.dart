@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:clean_dart_github_search/app/app_module.dart';
-import 'package:clean_dart_github_search/app/search/domain/entities/result.dart';
-import 'package:clean_dart_github_search/app/search/domain/usecases/search_by_text.dart';
+import 'package:clean_dart_github_search_mobx/app/app_module.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/entities/result.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/usecases/search_by_text.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';

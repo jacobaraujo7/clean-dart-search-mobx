@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:clean_dart_github_search/app/app_module.dart';
-import 'package:clean_dart_github_search/app/search/presenter/search_bloc.dart';
-import 'package:clean_dart_github_search/app/search/presenter/states/search_state.dart';
+import 'package:clean_dart_github_search_mobx/app/app_module.dart';
+import 'package:clean_dart_github_search_mobx/app/search/presenter/search_store.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:clean_dart_github_search_mobx/app/search/presenter/states/search_state.dart';
 
 class DioMock extends Mock implements Dio {}
 
@@ -19,15 +19,16 @@ main() {
   when(dio.get(any)).thenAnswer(
       (_) async => Response(data: jsonDecode(jsonResponse), statusCode: 200));
 
-  test('deve emitir sequencia correta de estados', () async {
-    var bloc = Modular.get<SearchBloc>();
-    expect(
-        bloc,
-        emitsInOrder([
-          isA<LoadingState>(),
-          isA<SuccessState>(),
-        ]));
-    bloc.add('jacob');
+  test('deve retorna um SuccessState', () async {
+    var store = Modular.get<SearchStore>();
+    var result = await store.makeSearch("text");
+    expect(result, isA<SuccessState>());
+  });
+
+  test('deve trocar o estado para SuccessState', () async {
+    var store = Modular.get<SearchStore>();
+    await store.stateReaction("text");
+    expect(store.state, isA<SuccessState>());
   });
 }
 

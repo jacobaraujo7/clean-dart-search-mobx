@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:clean_dart_github_search/app/search/domain/entities/result.dart';
+import 'package:clean_dart_github_search_mobx/app/search/domain/entities/result.dart';
 
 class ResultModel extends Result {
   final String image;

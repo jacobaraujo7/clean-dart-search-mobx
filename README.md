@@ -1,5 +1,5 @@
-# Clean Dart Github Search
+# Clean Dart Github Search MobX
 
-Github Search using ["Clean Dart"](https://github.com/Flutterando/Clean-Dart), BLoC and Modular.
+Github Search using ["Clean Dart"](https://github.com/Flutterando/Clean-Dart), MobX and Modular.
 
 

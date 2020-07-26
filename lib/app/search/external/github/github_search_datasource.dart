@@ -1,5 +1,5 @@
-import 'package:clean_dart_github_search/app/search/infra/datasources/search_datasource.dart';
-import 'package:clean_dart_github_search/app/search/infra/models/result_model.dart';
+import 'package:clean_dart_github_search_mobx/app/search/infra/datasources/search_datasource.dart';
+import 'package:clean_dart_github_search_mobx/app/search/infra/models/result_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 part 'github_search_datasource.g.dart';
